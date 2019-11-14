@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>form</title><style> form{
+  padding-top:100px;
+  text-align: center;
+  font-size:20px;
+  
+ }
+ div.sep1{
+  padding-top:400px;
+ margin-bottom: 10px;
+  width:10%;
+  height:15%;
+  float:right;
+  padding-top:40px;
+    background: linear-gradient(to bottom, #ccffff 0%, #99ff99 100%);
+
+
+ }
+ div.sep2{
+  margin-bottom: 10px;
+  width:10%;
+  height:5%;
+  
+  padding-top:40px;
+    background: linear-gradient(to bottom, #ccffff 0%, #99ff99 100%);
+
+ }
+
+ div.sep{
+  float:left;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-bottom: 100px;
+  
+  border:solid green round 2px; 
+  margin-left:390px;
+  text-align: center;
+   background-image: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+
+ }
+ div.sep:hover{
+  border: 3px solid #777;
+ }
+#submit{
+      height:40px;
+      width: 90px;
+  }
+</style>
+
+
+</head>
+<body>
+<form action="project.php" method="post">
+  
+<div class="sep1">
+  <img src="r2.jpg" style="width:50%"></div>
+  <div class="sep" >
+   <h1> Login  </h1>
+   <br><br>
+
+Enter your AirPort ID:
+<input type="text" name="username">
+<br><br>
+Enter Your password:
+<input type ="password" name="password">
+<br><br>
+<input type="submit" id="submit" value="submit"> 
+<br><br><br>
+
+<?php
+error_reporting(0);
+session_start();
+if(isset($_SESSION['start'])){
+if (file_exists('hit.txt')) {
+$fil = fopen('hit.txt', r);
+$dat = fread($fil, filesize('hit.txt'));
+echo "Hit:".$dat;
+}
+}
+else{
+if (file_exists('hit.txt')){
+$fil = fopen('hit.txt', r);
+$dat = fread($fil, filesize('hit.txt'));
+echo $dat+1;
+fclose($fil);
+$fil = fopen('hit.txt', w);
+fwrite($fil, $dat+1);
+}
+$_SESSION['start'] = "started";
+}
+?>
+
+</div>
+  <div class="sep2">
+  <img src="r2.jpg" style="width:50%"></div></form>
+
+
+</body>
+</html>
